@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: ./app
+    volumes:
+      - "./app/src:/app:ro"
+    restart: on-failure
+    stop_grace_period: 1s
+  ingress:
+    build:
+      context: ./nginx
+    restart: on-failure
+    ports:
+      - "127.0.0.1:8080:80"
